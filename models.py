@@ -7,6 +7,7 @@ class Users(UserMixin, db.Model) :
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String(100), nullable = False, unique = True)
     password = db.Column(db.String(200), nullable = False)
+    role = db.Column(db.String(100), nullable = False)
     flag = db.Column(db.String(200), default="Inactive")
 
 class Admin(db.Model) :
@@ -18,22 +19,25 @@ class Admin(db.Model) :
 
 class Company(db.Model) :
     id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String(100), nullable = False, unique = True)
-    contact = db.Column(db.Integer, nullable = False, unique = True)
+    company_name = db.Column(db.String(100), nullable = False, unique = True)
+    hr_contact = db.Column(db.Integer, nullable = False, unique = True)
     website = db.Column(db.String(100), nullable = False, unique = True)
+    company_email = db.Column(db.String(100), nullable = False, unique = True)
+    location = db.Column(db.String(100), nullable = False)
     approval = db.Column(db.String(100), default="Inactive")
 
-    drives = db.relationship('Drive', backref='company')
+    #drives = db.relationship('Drive', backref='company')
 
 class Student(db.Model) :
     id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String(100), nullable = False)
-    phone = db.Column(db.Integer, nullable = False, unique = True)
-    email = db.Column(db.String(100), nullable = False, unique = True)
+    student_name = db.Column(db.String(100), nullable = False)
+    student_phone = db.Column(db.Integer, nullable = False, unique = True)
+    student_email = db.Column(db.String(100), nullable = False, unique = True)
     dob = db.Column(db.Date, nullable = False)
+    resume = db.Column(db.String(200), unique = True, nullable = False)
 
-    application = db.relationship('Application', backref = 'student')
-    drive = db.relationship('Drive', backref = 'student')
+    #application = db.relationship('Application', backref = 'student')
+    #drive = db.relationship('Drive', backref = 'student')
 
 class Drive(db.Model) :
     id = db.Column(db.Integer, primary_key = True)
@@ -44,7 +48,7 @@ class Drive(db.Model) :
     deadline = db.Column(db.DateTime, nullable = False)
     status = db.Column(db.String(50), default = "Pending")
 
-    application = db.relationship('Application', backref = 'drive')
+    #application = db.relationship('Application', backref = 'drive')
 
 class Application(db.Model):
     id = db.Column(db.Integer, primary_key = True)

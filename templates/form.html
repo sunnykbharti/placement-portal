@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='form.css')}}">
+</head>
+<body>
+    <div class="registration-wrapper">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='travail.png') }}">
+            {% if error %}
+                <h3>{{error}}</h3>
+            {% endif %}
+        </div>
+        <div class="form-section student-bg">
+            <h2>Student Registration</h2>
+            <div>
+                {% if error %}
+                    <p>{{error_student}}</p>
+                {% endif %}
+            </div>
+            <form action="/register/student" method="post">
+<br>
+                <input type="text" name="student_name" placeholder="Full Name" required>
+<br>
+                <input type="number" name="student_phone" placeholder="Contact Number" required>
+<br>
+                <input type="email" name="student_email" placeholder="College Email" required>
+<br>
+                <input type="date" name="dob" placeholder="Date of Birth" required>
+<br>
+                <input type="url" name="resume" placeholder="Resume/CV Link" required>
+<br>
+                <input type="password" name="password" placeholder="Create a Password" required>
+<br>
+                <button type="submit">Join as Student</button>
+            </form>
+        </div>
+
+        <div class="form-section company-bg">
+            <h2>Company Registration</h2>
+            <div>
+                {% if error %}
+                    <p>{{error_company}}</p>
+                {% endif %}
+            </div>
+            <form action="/register/company" method="post">
+<br>
+                <input type="text" name="company_name" placeholder="Company Name" required>
+<br>
+                <input type="number" name="hr_contact" placeholder="HR Contact" required>
+<br>
+                <input type="url" name="website" placeholder="Company Website" required>
+<br>
+                <input type="email" name="company_email" placeholder="Email ID of Company" required>
+<br>
+                <input type="text" name="location" placeholder="location" required>
+<br>
+                <input type="password" name="password" placeholder="Create a Password" required>
+<br>
+                <button type="submit">Join as Recruiter</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

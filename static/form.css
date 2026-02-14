@@ -1,0 +1,62 @@
+.registration-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* Allows stacking on mobile */
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* 1. Target the CONTAINER, not the image */
+.logo {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%;
+    /* padding: 20px; */
+    position: absolute; /* Keep it above the background colors */
+    top: 0;
+    /* z-index: 10; */
+}
+
+/* 2. Reset the image so it doesn't try to flex itself */
+.logo img {
+    width: 150px;
+    height: auto;
+}
+
+/* 3. Style the message so it doesn't overlap */
+.logo h3 {
+    margin: 0;
+    color: #f51707;
+    font-size: 1rem;
+    flex-grow: 1;      /* This helps center it if needed */
+    text-align: center;
+}
+
+
+.form-section {
+    flex: 1; /* Gives both forms equal width */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+/* Optional: Different background colors to distinguish types */
+.student-bg {
+    background-color: #f0fdf4; /* Light Green */
+    border-left: 1px solid #ddd;
+}
+
+.company-bg {
+    background-color: #eff6ff; /* Light Blue */
+    border-left: 1px solid #ddd;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 350px;
+}
