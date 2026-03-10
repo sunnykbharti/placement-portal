@@ -27,7 +27,7 @@ h4 {
     justify-content: center; /* Centers vertically in the viewport */
     align-items: center;    /* Centers horizontally */
     min-height: 100vh;      /* Ensures it takes the full screen height */
-    background-color: #d1e9e0; /* Matches your current green */
+    background-color: #ba7f49; /* Matches your current green */
 }
 
 .logo img{
@@ -53,7 +53,7 @@ h4 {
 
 .login-form button {
     padding: 12px;
-    background-color: #004a8c;
+    background-color: #eb7d07;
     color: white;
     border: none;
     border-radius: 4px;
