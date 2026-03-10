@@ -30,11 +30,11 @@ def login():
         else:
             return render_template("app_login.html", time=time, error="Invalid credentials!")
 
-    return render_template("app_login.html", time=time, msg=msg)
+    return render_template("app_login.html", time=time, message=msg)
 
 
 @auth_bp.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("auth.login"))
+    return redirect(url_for("auth.login",message="You have successfully logged out!!!!!"))
