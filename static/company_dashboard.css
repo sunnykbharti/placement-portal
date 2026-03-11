@@ -1,0 +1,122 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+/* Top navigation bar */
+.top-nav {
+    height: 60px;
+    background: #e16e35;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    color: white;
+}
+
+/* Sidebar + content sit side by side */
+.main-wrapper {
+    display: flex;
+    height: calc(100vh - 60px);
+}
+
+/* Dark sidebar */
+.side-nav {
+    width: 220px;
+    background: #1a1a2e;
+    color: white;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-nav ul li a {
+    display: block;
+    padding: 12px 20px;
+    color: #aaa;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.side-nav ul li a:hover {
+    background: #e16e35;
+    color: white;
+}
+
+/* Logout pushed to bottom */
+.side-nav .logout {
+    margin-top: auto;
+    border-top: 1px solid #333;
+    padding-top: 10px;
+}
+
+/* Main content area */
+.content {
+    flex: 1;
+    padding: 30px;
+    background: #f4f4f4;
+    overflow-y: auto;
+}
+
+img {
+    width: 120px;
+    height: auto;
+}
+
+/* Form container */
+.create-drive {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Each label */
+.create-drive label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Each input field */
+.create-drive input {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Input focus effect */
+.create-drive input:focus {
+    outline: none;
+    border-color: #e16e35;
+}
+
+/* Submit button */
+.create-drive button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    background: #e16e35;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.create-drive button:hover {
+    background: #c45a22;
+}
