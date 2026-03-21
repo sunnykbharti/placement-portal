@@ -1,0 +1,25 @@
+{% extends "company/dashboard.html" %}
+
+{% block content %}
+
+<h1> Create a New Drive</h1>
+<form class="create-drive" action="{{ url_for('company.newDrive') }}"" method="post">
+    <label>Drive Name* : </label>
+    <input type="text" name="name" placeholder="Drive Name" required>
+<br>
+    <label>Job Title* : </label>
+    <input type="text" name="title" placeholder="Job Title" required>
+<br>
+    <label>Job Description* : </label>
+    <input type="text" name="description" placeholder="Description : Mention expectation, salary etc." required>
+<br>
+    <label>Eligibility Criteria* : </label>
+    <input type="text" name="eligibility" placeholder="Qualifications Required" required>
+<br>
+    <label>Deadline* : </label>
+    <input type="datetime-local" name="deadline" placeholder="Deadline" required>
+
+    <button type="submit">Create</button>
+
+</form>
+{% endblock %}

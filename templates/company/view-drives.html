@@ -1,0 +1,29 @@
+{% extends "company/dashboard.html" %}
+
+{% block content %}
+
+<h1 id="viewdrive"> Drives </h1>
+<table border="1" cellpadding="8" cellspacing="0" width="100%">
+    <tr>
+        <th>Drive ID</th><th>Name</th><th>Title</th><th>Deadline</th><th>Status</th><th>Action</th>
+    </tr>
+    {% for drive in drives %}
+    <tr>
+        <td> {{ drive.id }} </td>
+        <td> {{ drive.name }} </td>
+        <td> {{ drive.title }} </td>
+        <td> {{ drive.deadline }} </td>
+        <td> {{ drive.status }} </td>
+        <td>
+            {% if drive.status == 'Active' %}
+                <a href = "{{url_for('company.viewDrive', drive_id=drive.id) }}"> View Details </a> |
+            {% endif %}
+            {% if drive.status == 'Cancelled By Admin' or drive.status !=  'Withdrawn By Company' %}
+                <a href="{{ url_for('company.removeDrive', drive_id=drive.id) }}"
+                    onclick="return confirm('Are you sure, You want to delete this drive!')"> WithDraw</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
