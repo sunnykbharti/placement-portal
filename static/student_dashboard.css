@@ -1,0 +1,111 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+/* Top navigation bar */
+.top-nav {
+    height: 60px;
+    background: #e16e35;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    color: white;
+}
+
+/* Sidebar + content sit side by side */
+.main-wrapper {
+    display: flex;
+    height: calc(100vh - 60px);
+}
+
+/* Dark sidebar */
+.side-nav {
+    width: 220px;
+    background: #1a1a2e;
+    color: white;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-nav ul li a {
+    display: block;
+    padding: 12px 20px;
+    color: #aaa;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.side-nav ul li a:hover {
+    background: #e16e35;
+    color: white;
+}
+
+/* Logout pushed to bottom */
+.side-nav .logout {
+    margin-top: auto;
+    border-top: 1px solid #333;
+    padding-top: 10px;
+}
+
+/* Main content area */
+.content {
+    flex: 1;
+    padding: 30px;
+    background: #f4f4f4;
+    overflow-y: auto;
+}
+
+img {
+    width: 120px;
+    height: auto;
+}
+
+.update-form {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    font-family: sans-serif;
+}
+
+.update-form h4 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #333;
+}
+
+.update-form input {
+    padding: 8px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.update-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #e67e22; /* Matches your Travail orange */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.update-form button:hover {
+    background-color: #d35400;
+}
