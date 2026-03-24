@@ -44,7 +44,7 @@ def load_user(user_id):
 #------------------------------ when user enters the portal redirect to - 
 @app.route('/')
 def home():
-     return render_template("admin/dashboard.html")
+     return render_template("company/create-drive.html")
 
 
 if __name__ == '__main__':

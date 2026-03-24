@@ -41,6 +41,7 @@ class Student(db.Model) :
 
 class Drive(db.Model) :
     id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String(500), nullable=False)
     company_id = db.Column(db.Integer, db.ForeignKey('company.id'))
     title = db.Column(db.String(200), nullable = False)
     description = db.Column(db.String(500), nullable= False)
