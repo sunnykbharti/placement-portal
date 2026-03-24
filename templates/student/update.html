@@ -1,0 +1,18 @@
+{% extends "student/dashboard.html" %}
+
+{% block content %}
+
+<h2>Profile Details</h2>
+<div class="update-form">
+<form action="{{ url_for('student.update') }}" method="post">
+    <h4> Student ID : {{ student.id }}</h4>
+    <h4> Name : <input type="text" name="name" value="{{ student.student_name }}"></h4>
+    <h4> Phone : <input type="number" name="phone" value="{{ student.student_phone }}"></h4>
+    <h4> Email : <input type="email" name="email" value="{{ student.student_email }}"></h4>
+    <h4> DOB : <input type="date" name="dob" value="{{ student.dob }}"></h4>
+    
+
+    <button type="submit">Update my Profile</button>
+</form>
+</div>
+{% endblock %}

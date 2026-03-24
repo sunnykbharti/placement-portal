@@ -1,0 +1,40 @@
+{% extends "student/dashboard.html" %}
+
+{% block content %}
+<div class="view-drive">
+    <h1>Drive Details</h1>
+    <hr>
+    <h3>Company: {{ company.company_name }}</h3>
+    <p><strong>Position:</strong> {{ drive.title }}</p>
+    <p><strong>Description:</strong> {{ drive.description }}</p>
+    <p><strong>Eligibility:</strong> {{ drive.eligibility }}</p>
+    <p><strong>Deadline:</strong> {{ drive.deadline.strftime('%Y-%m-%d') }}</p>
+</div>
+
+<div class="apply-drive" style="margin-top: 30px; border-top: 1px solid #ccc; padding-top: 20px;">
+    <h2>Submit Application</h2>
+    <form action="{{ url_for('student.apply', drive_id=drive.id) }}" method="POST">
+        
+        <div>
+            <label>Student Name:</label>
+            <input type="text" name="name" value="{{ student.student_name }}" readonly>
+        </div>
+
+        <div>
+            <label>Email:</label>
+            <input type="email" name="email" value="{{ student.student_email }}" readonly>
+        </div>
+
+        <div style="margin-top: 15px;">
+            <input type="checkbox" id="declaration" name="declaration" required>
+            <label for="declaration">
+                I hereby declare that all details provided are true to the best of my knowledge.
+            </label>
+        </div>
+        
+        <div style="margin-top: 15px;">
+            <button type="submit">Confirm Application</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

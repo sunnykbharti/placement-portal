@@ -1,0 +1,20 @@
+{% extends "student/dashboard.html" %}
+
+{% block content %}
+
+<h1 id="viewdrive"> Drives </h1>
+<table border="1" cellpadding="8" cellspacing="0" width="100%">
+    <tr>
+        <th>Drive ID</th><th>Name</th><th>Title</th><th>Deadline</th><th>Action</th>
+    </tr>
+    {% for drive in drives %}
+    <tr>
+        <td> {{ drive.id }} </td>
+        <td> {{ drive.name }} </td>
+        <td> {{ drive.title }} </td>
+        <td> {{ drive.deadline }} </td>
+        <td> <a href="{{url_for('student.apply',drive_id=drive.id)}}">view drive</a> </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
