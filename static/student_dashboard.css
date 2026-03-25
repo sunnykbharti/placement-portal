@@ -109,3 +109,49 @@ img {
 .update-form button:hover {
     background-color: #d35400;
 }
+
+/* Container for the whole page content */
+.view-drive, .apply-drive {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Typography styling */
+h1, h2 { color: #2c3e50; border-bottom: 2px solid #e67e22; padding-bottom: 10px; }
+h3 { color: #e67e22; margin-top: 0; }
+p { line-height: 1.6; color: #555; }
+
+/* Form Field Styling */
+.apply-drive div { margin-bottom: 15px; }
+label { display: block; font-weight: bold; margin-bottom: 5px; color: #333; }
+
+input[readonly] {
+    width: 100%;
+    padding: 10px;
+    background-color: #f0f0f0; /* Greyed out to show it's disabled */
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: not-allowed;
+}
+
+/* Checkbox alignment */
+input[type="checkbox"] { margin-right: 10px; transform: scale(1.2); }
+
+/* Submit Button */
+button[type="submit"] {
+    background-color: #e67e22;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover { background-color: #d35400; }

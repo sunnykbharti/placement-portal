@@ -68,3 +68,60 @@ img {
     width: 120px;
     height: auto;
 }
+
+.company {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; /* Removes double borders */
+    margin-top: 20px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+th {
+    background-color: #2c3e50; /* Darker professional header */
+    color: white;
+    text-align: left;
+    padding: 12px;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    color: #444;
+}
+
+/* Zebra striping for readability */
+tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+tr:hover {
+    background-color: #f1f1f1; /* Highlight row on hover */
+}
+
+/* Action Link Styling */
+td a {
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+/* Green for Approve, Red for Blacklist */
+a[href*="approve"] { color: #27ae60; }
+a[href*="blacklist"] { color: #e74c3c; }
+a[href*="active"] { color: #27ae60; }
+a[href*="inactive"] { color: #e74c3c; }
+a[href*="cancel"] { color: #e74c3c; }
+a[href*="view"] { color: #ec6f08; }
+a[href*="blacklist"] { color: #e74c3c; }
+
+td a:hover {
+    text-decoration: underline;
+}
