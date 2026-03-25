@@ -1,0 +1,23 @@
+{% extends "admin/dashboard.html" %}
+
+{% block content %}
+<!-- APPLICATIONS -->
+            <h2 id="applications">Student Applications</h2>
+            <table border="1" cellpadding="8" cellspacing="0" width="100%">
+                <tr>
+                    <th>Sr No.</th><th>Student ID</th><th>Drive ID</th><th>Date</th><th>Status</th><th>Action</th>
+                </tr>
+                {% for app in applications %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ app.student_id }}</td>
+                    <td>{{ app.drive_id }}</td>
+                    <td>{{ app.date.strftime('%d/%m/%Y') }}</td>
+                    <td>{{ app.status }}</td>
+                    <td><a href="{{ url_for('admin.view_application', app_id=app.id) }}">View</a></td>
+                </tr>
+                {% else %}
+                <tr><td colspan="6">No applications yet.</td></tr>
+                {% endfor %}
+            </table>
+{% endblock %}

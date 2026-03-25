@@ -1,0 +1,32 @@
+{% extends "admin/dashboard.html" %}
+
+{% block content %}
+<div class="company">
+<!-- COMPANIES -->
+            <h2 id="companies">Registered Companies</h2>
+            <table border="1" cellpadding="8" cellspacing="0" width="100%">
+                <tr>
+                    <th>Company Name</th><th>Email</th><th>Location</th><th>Status</th><th>Action</th>
+                </tr>
+                {% for company in companies %}
+                <tr>
+                    <td>{{ company.company_name }}</td>
+                    <td>{{ company.company_email }}</td>
+                    <td>{{ company.location }}</td>
+                    <td>{{ company.approval }}</td>
+                    <td>
+                        {% if company.approval != 'Active' %}
+                            <a href="{{ url_for('admin.approve_company', company_id=company.id) }}">Approve</a> |
+                        {% endif %}
+                        {% if company.approval != 'Blacklisted' %}
+                            <a href="{{ url_for('admin.blacklist_company', company_id=company.id) }}"
+                               onclick="return confirm('Blacklist this company? All their drives will be cancelled.')">Blacklist</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% else %}
+                <tr><td colspan="5">No companies registered yet.</td></tr>
+                {% endfor %}
+            </table>
+</div>
+{% endblock %}

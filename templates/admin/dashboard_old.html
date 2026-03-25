@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_dashboard.css') }}">
+</head>
+<body>
+
+    <nav class="top-nav">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='travail.png') }}">
+        </div>
+        <div>Welcome, {{ current_user.username }}</div>
+    </nav>
+
+    <div class="main-wrapper">
+
+        <!-- Sidebar -->
+        <aside class="side-nav">
+            <ul>
+                <li><a href="{{ url_for('admin.dashboard') }}">🏠 Dashboard</a></li>
+                <li><a href="#companies">🏢 Companies</a></li>
+                <li><a href="#students">👥 Students</a></li>
+                <li><a href="#drives">📋 Drives</a></li>
+                <li><a href="#applications">📝 Applications</a></li>
+            </ul>
+            <div class="logout">
+                <ul>
+                    <li><a href="{{ url_for('auth.logout') }}">🚪 Logout</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <main class="content">
+
+            <!-- COMPANIES -->
+            <h2 id="companies">Registered Companies</h2>
+            <table border="1" cellpadding="8" cellspacing="0" width="100%">
+                <tr>
+                    <th>Company Name</th><th>Email</th><th>Location</th><th>Status</th><th>Action</th>
+                </tr>
+                {% for company in companies %}
+                <tr>
+                    <td>{{ company.company_name }}</td>
+                    <td>{{ company.company_email }}</td>
+                    <td>{{ company.location }}</td>
+                    <td>{{ company.approval }}</td>
+                    <td>
+                        {% if company.approval != 'Active' %}
+                            <a href="{{ url_for('admin.approve_company', company_id=company.id) }}">Approve</a> |
+                        {% endif %}
+                        {% if company.approval != 'Blacklisted' %}
+                            <a href="{{ url_for('admin.blacklist_company', company_id=company.id) }}"
+                               onclick="return confirm('Blacklist this company? All their drives will be cancelled.')">Blacklist</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% else %}
+                <tr><td colspan="5">No companies registered yet.</td></tr>
+                {% endfor %}
+            </table>
+
+            <br>
+
+            <!-- STUDENTS -->
+            <h2 id="students">Registered Students</h2>
+            <table border="1" cellpadding="8" cellspacing="0" width="100%">
+                <tr>
+                    <th>Name</th><th>Email</th><th>Phone</th><th>Status</th><th>Action</th>
+                </tr>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.student_name }}</td>
+                    <td>{{ student.student_email }}</td>
+                    <td>{{ student.student_phone }}</td>
+                    <td>{{ student.flag }}</td>
+                    <td>
+                        {% if student.flag != 'Blacklisted' %}
+                            <a href="{{ url_for('admin.blacklist_student', student_id=student.id) }}"
+                               onclick="return confirm('Blacklist this student?')">Blacklist</a>
+                        {% else %}
+                            Blacklisted
+                        {% endif %}
+                    </td>
+                </tr>
+                {% else %}
+                <tr><td colspan="5">No students registered yet.</td></tr>
+                {% endfor %}
+            </table>
+
+            <br>
+
+            <!-- DRIVES -->
+            <h2 id="drives">Ongoing Drives</h2>
+            <table border="1" cellpadding="8" cellspacing="0" width="100%">
+                <tr>
+                    <th>Sr No.</th><th>Drive Name</th><th>Company ID</th><th>Status</th><th>Action</th>
+                </tr>
+                {% for drive in drives %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ drive.title }}</td>
+                    <td>{{ drive.company_id }}</td>
+                    <td>{{ drive.status }}</td>
+                    <td>
+                        {% if drive.status == 'Withdrawn By Company' %}
+                            <a>Withdrawn By Company</a>
+                        {% endif %}
+                        {% if drive.status != 'Cancelled By Admin' and drive.status != 'Withdrawn By Company'%}
+                            <a href="{{ url_for('admin.view_drive', drive_id=drive.id) }}">View Details</a> |
+                            <a href="{{ url_for('admin.cancel_Drive', drive_id=drive.id) }}">Cancel Drive</a>
+                        {% endif %}
+                        {% if drive.status == 'Pending' or drive.status == 'Cancelled By Admin' and drive.status != 'Withdrawn By Company'%}
+                            <a href="{{ url_for('admin.approve_Drive', drive_id=drive.id) }}">Approve Drive</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% else %}
+                <tr><td colspan="5">No drives yet.</td></tr>
+                {% endfor %}
+            </table>
+
+            <br>
+
+            <!-- APPLICATIONS -->
+            <h2 id="applications">Student Applications</h2>
+            <table border="1" cellpadding="8" cellspacing="0" width="100%">
+                <tr>
+                    <th>Sr No.</th><th>Student ID</th><th>Drive ID</th><th>Date</th><th>Status</th><th>Action</th>
+                </tr>
+                {% for app in applications %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ app.student_id }}</td>
+                    <td>{{ app.drive_id }}</td>
+                    <td>{{ app.date.strftime('%d/%m/%Y') }}</td>
+                    <td>{{ app.status }}</td>
+                    <td><a href="{{ url_for('admin.view_application', app_id=app.id) }}">View</a></td>
+                </tr>
+                {% else %}
+                <tr><td colspan="6">No applications yet.</td></tr>
+                {% endfor %}
+            </table>
+
+        </main>
+    </div>
+</body>
+</html>
