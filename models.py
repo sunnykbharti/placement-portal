@@ -35,6 +35,7 @@ class Student(db.Model) :
     student_email = db.Column(db.String(100), nullable = False, unique = True)
     dob = db.Column(db.Date, nullable = False)
     resume = db.Column(db.String(200), unique = True, nullable = False)
+    status = db.Column(db.String(200), default="Active")
 
     #application = db.relationship('Application', backref = 'student')
     #drive = db.relationship('Drive', backref = 'student')
