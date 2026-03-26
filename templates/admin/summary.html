@@ -1,5 +1,23 @@
 {% extends "admin/dashboard.html" %}
 
 {% block content %}
+<div class="company_data">
+    <h2><a href="{{url_for('admin.viewCompany')}}">Company</a></h2>
+    <h4>Total Registered Companies : {{ tot_company }}</h4>
+    <h4>Approved Companies : {{ act_company }}</h4>
+    <h4>Blacklisted Companies : {{ inact_company }}</h4>
 
+</div>
+<div class="students_data">
+    <h2><a href="{{url_for('admin.viewStudent')}}">Students</a></h2>
+    <h4>Total Registered Students : {{ tot_students }}</h4>
+</div>
+<div class="drive_data">
+    <h2><a href="{{url_for('admin.viewDrive')}}">Drives</a></h2>
+    <h4>Total Drives Created : {{ tot_drives }}</h4>
+</div>
+<div class="application_data">
+    <h2><a href="{{url_for('admin.viewApplication')}}">Applications</a></h2>
+    <h4>Total Applications : {{ tot_applications }}</h4>
+</div>
 {% endblock %}
