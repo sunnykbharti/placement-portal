@@ -125,3 +125,58 @@ a[href*="blacklist"] { color: #e74c3c; }
 td a:hover {
     text-decoration: underline;
 }
+
+.search-section {
+    margin: 20px 0;
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+}
+
+.search-form {
+    display: flex;
+    gap: 10px; /* Space between input and button */
+    max-width: 500px;
+}
+
+.search-form input {
+    flex: 1; /* Makes input take up remaining space */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.search-form button {
+    padding: 10px 20px;
+    background-color: #2c3e50; /* Match your table header color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.search-form button:hover {
+    background-color: #34495e;
+}
+
+/* -------- summary.html ------- */
+/* Putting a box around the H2 titles */
+
+
+/* Adding a line between the divs */
+.company_data, .students_data, .drive_data {
+    border-bottom: 2px solid #ddd; /* The line between sections */
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Removing the line from the very last box */
+.application_data {
+    text-align: center;
+    padding-bottom: 30px;
+}
+/* ---------------------------------- */
