@@ -1,15 +1,23 @@
 {% extends "admin/dashboard.html" %}
 
 {% block content %}
+<div class="search-section">
+    <h2>Search Drives</h2>
+    <form action="{{ url_for('admin.viewDrive') }}" method="GET" class="search-form">
+        <input type="text" name="name" placeholder="Search by name" value="{{ name or '' }}">
+        <button type="submit">Search</button>
+    </form>
+</div>
+
 <!-- DRIVES -->
             <h2 id="drives">Ongoing Drives</h2>
             <table border="1" cellpadding="8" cellspacing="0" width="100%">
                 <tr>
-                    <th>Sr No.</th><th>Drive Name</th><th>Company ID</th><th>Status</th><th>Action</th>
+                    <th>Drive ID</th><th>Drive Name</th><th>Company ID</th><th>Status</th><th>Action</th>
                 </tr>
                 {% for drive in drives %}
                 <tr>
-                    <td>{{ loop.index }}</td>
+                    <td>{{ drive.id }}</td>
                     <td>{{ drive.title }}</td>
                     <td>{{ drive.company_id }}</td>
                     <td>{{ drive.status }}</td>
@@ -17,13 +25,14 @@
                         {% if drive.status == 'Withdrawn By Company' %}
                             <a>Withdrawn By Company</a>
                         {% endif %}
-                        {% if drive.status != 'Cancelled By Admin' and drive.status != 'Withdrawn By Company'%}
+                        {% if drive.status == 'Pending' or drive.status == 'Cancelled By Admin' and drive.status != 'Withdrawn By Company'%}
+                            <a href="{{ url_for('admin.view_drive', drive_id=drive.id) }}">View Details</a> |
+                            <a href="{{ url_for('admin.approve_Drive', drive_id=drive.id) }}">Approve Drive</a>
+                        {% elif drive.status != 'Cancelled By Admin' and drive.status != 'Withdrawn By Company'%}
                             <a href="{{ url_for('admin.view_drive', drive_id=drive.id) }}">View Details</a> |
                             <a href="{{ url_for('admin.cancel_Drive', drive_id=drive.id) }}">Cancel Drive</a>
                         {% endif %}
-                        {% if drive.status == 'Pending' or drive.status == 'Cancelled By Admin' and drive.status != 'Withdrawn By Company'%}
-                            <a href="{{ url_for('admin.approve_Drive', drive_id=drive.id) }}">Approve Drive</a>
-                        {% endif %}
+                        
                     </td>
                 </tr>
                 {% else %}

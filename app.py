@@ -29,9 +29,15 @@ app.register_blueprint(admin_bp)
 app.register_blueprint(student_bp)
 app.register_blueprint(company_bp)
 
-
-with app.app_context():
-    db.create_all()
+# with app.app_context():
+#     db.create_all()
+#     admin = Users.query.filter_by(username="admin").first()
+#     if not admin:
+#         admin = Users(username="admin1", password="0", role="admin", flag="Active")
+#         db.session.add(admin)
+#         db.session.commit()
+# with app.app_context():
+#     db.create_all()
     # admin = Users(username="admin1", password="0", role="admin", flag="Active")
     # db.session.add(admin)
     # db.session.commit()
@@ -44,7 +50,7 @@ def load_user(user_id):
 #------------------------------ when user enters the portal redirect to - 
 @app.route('/')
 def home():
-     return render_template("company/create-drive.html")
+     return render_template("app_login.html")
 
 
 if __name__ == '__main__':

@@ -7,7 +7,7 @@
     <tr>
         <th>Drive ID</th><th>Name</th><th>Title</th><th>Deadline</th><th>Status</th><th>Action</th>
     </tr>
-    {% for drive in drives %}
+    {% for drive in upcoming_drives %}
     <tr>
         <td> {{ drive.id }} </td>
         <td> {{ drive.name }} </td>
@@ -17,6 +17,7 @@
         <td>
             {% if drive.status == 'Active' %}
                 <a href = "{{url_for('company.viewDrive', drive_id=drive.id) }}"> View Details </a> |
+                <a href="{{ url_for('company.editDrive',drive_id=drive.id)}}"> Edit </a> |
             {% endif %}
             {% if drive.status == 'Cancelled By Admin' or drive.status !=  'Withdrawn By Company' %}
                 <a href="{{ url_for('company.removeDrive', drive_id=drive.id) }}"

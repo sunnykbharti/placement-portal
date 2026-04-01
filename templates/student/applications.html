@@ -1,5 +1,18 @@
 {% extends "student/dashboard.html" %}
 
 {% block content %}
-<p>Success</p>
+<h1 id="studenttables"> Applications </h1>
+<table border="1" cellpadding="8" cellspacing="0" width="100%">
+    <tr>
+        <th>Application ID</th><th>Drive ID</th><th>Applied On</th><th>Status</th>
+    </tr>
+    {% for applied in applied %}
+    <tr>
+        <td> {{ applied.id }} </td>
+        <td> {{ applied.drive_id }} </td>
+        <td> {{ applied.date }} </td>
+        <td> {{ applied.status }} </td>
+    </tr>
+    {% endfor %}
+</table>
 {% endblock %}

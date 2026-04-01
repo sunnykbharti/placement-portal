@@ -1,0 +1,9 @@
+{% extends "student/dashboard.html" %}
+
+{% block content %}
+<form action="{{ url_for('student.upload_resume') }}" method="POST" enctype="multipart/form-data">
+    <label>Upload Resume (PDF only):</label>
+    <input type="file" name="resume_file" accept=".pdf" required>
+    <button type="submit">Upload</button>
+</form>
+{% endblock %}

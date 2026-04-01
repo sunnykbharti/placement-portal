@@ -176,3 +176,93 @@ a[href*="removeDrive"] { color: #e74c3c; } /* Red for Withdraw */
 td a:hover {
     text-decoration: underline;
 }
+
+.search-section {
+    margin: 20px 0;
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+}
+
+.search-form {
+    display: flex;
+    gap: 10px; /* Space between input and button */
+    max-width: 500px;
+}
+
+.search-form input {
+    flex: 1; /* Makes input take up remaining space */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.search-form button {
+    padding: 10px 20px;
+    background-color: #2c3e50; /* Match your table header color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.search-form button:hover {
+    background-color: #34495e;
+}
+
+/* Centers the entire edit-drive container */
+.edit-drive {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    background-color: #f4f7f6;
+    min-height: 80vh;
+}
+
+/* Styles the form like a clean white card */
+.edit-drive form {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Styles labels and inputs */
+.edit-drive label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.edit-drive input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+/* Buttons */
+.edit-drive button {
+    background-color: #e67e22; /* Travail Orange */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.edit-drive a {
+    margin-left: 15px;
+    color: #7f8c8d;
+    text-decoration: none;
+}

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from datetime import datetime
-from models import Users
+from models import Users, Student, Company
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -24,9 +24,15 @@ def login():
             if user.role == "admin":
                 return redirect(url_for("admin.dashboard"))
             elif user.role == "student":
-                return redirect(url_for("student.dashboard"))
+                student = Student.query.filter_by(student_email=current_user.username).first()
+                if student.status=="Active" :
+                    return redirect(url_for("student.dashboard"))
+                return redirect(url_for("auth.login", message=f'Status : {student.status}, Kindly contact Admin'))
             elif user.role == "company":
-                return redirect(url_for("company.dashboard"))
+                company = Company.query.filter_by(company_email=current_user.username).first()
+                if company.approval=="Active":
+                    return redirect(url_for("company.dashboard"))
+                return redirect(url_for("auth.login", message=f'Status : {company.approval}, Kindly contact Admin'))
         else:
             return render_template("app_login.html", time=time, error="Invalid credentials!")
 

@@ -11,13 +11,18 @@
 <div class="students_data">
     <h2><a href="{{url_for('admin.viewStudent')}}">Students</a></h2>
     <h4>Total Registered Students : {{ tot_students }}</h4>
+    <h4>Active Students : {{ act_students }}</h4>
+    <h4>Blacklisted Students : {{ inact_students }}</h4>
 </div>
 <div class="drive_data">
     <h2><a href="{{url_for('admin.viewDrive')}}">Drives</a></h2>
     <h4>Total Drives Created : {{ tot_drives }}</h4>
+    <h4>Ongoing Drives : {{ act_drives }}</h4>
+    <h4>Other Drives : {{ inact_drives }}</h4>
 </div>
 <div class="application_data">
     <h2><a href="{{url_for('admin.viewApplication')}}">Applications</a></h2>
     <h4>Total Applications : {{ tot_applications }}</h4>
+    <h4>Shortlisted Applications : {{ act_applications }}</h4>
 </div>
 {% endblock %}

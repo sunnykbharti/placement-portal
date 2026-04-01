@@ -19,10 +19,11 @@
         </div>
         <div class="head">
             <h1>Travail</h1>
-            {% if message %}
-                <h3>{{message}}</h3>
-            {% endif %}
+            
         </div>
+        {% if message %}
+            <h3>{{message}}</h3>
+        {% endif %}
         <div class="form">
             <form class="login-form" action="/login" method="post">
                 <input type="text" name="username" placeholder="Username" required>

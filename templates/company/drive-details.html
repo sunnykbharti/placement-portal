@@ -12,6 +12,7 @@
         <td> {{ drive.title }} </td>
         <td> {{ drive.deadline }} </td>
         <td> {{ drive.status }} </td>
+    </tr>
 </table>
 <h3> Student Applications </h3>
 <table border="1" cellpadding="8" cellspacing="0" width="100%" style="text-align: center;">
@@ -23,9 +24,17 @@
             {% for student in students %}
                 <td> {{ application.id }} </td>
                 <td> {{ student.id }} </td>
-                <td> {{ student.name }} </td>
-                <td> {{ student.contact }} </td>
-                <td> {{ student.status }} </td>
+                <td> {{ student.student_name }} </td>
+                <td> {{ student.student_phone }} </td>
+                <td> {{ application.status }} </td>
+                <td>
+                    {% if application.status=="Applied" %}
+                        <a href="{{ url_for('company.approveApplication',application_id=application.id)}}">Shortlist</a> |
+                        <a href="{{ url_for('company.rejectApplication',application_id=application.id)}}">Reject</a>
+                    {% else %}
+                        <a>Application {{application.status}}</a>
+                    {% endif %}
+                </td>
             {% endfor %}
         {% endfor %}
     </tr>

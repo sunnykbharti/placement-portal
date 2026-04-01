@@ -1,0 +1,20 @@
+{% extends "company/dashboard.html" %}
+{% block content %}
+<div class="edit-drive">
+    <h2>Edit Placement Drive</h2>
+    <form method="POST">
+        <label>Drive Name:</label>
+        <input type="text" name="name" value="{{ drive.name }}" required><br><br>
+
+        <label>Job Title:</label>
+        <input type="text" name="title" value="{{ drive.title }}" required><br><br>
+
+        <label>Deadline:</label>
+        <input type="datetime-local" name="deadline" 
+            value="{{ drive.deadline.strftime('%Y-%m-%dT%H:%M') }}" required><br><br>
+
+        <button type="submit">Update Drive</button>
+        <a href="{{ url_for('company.allDrives') }}">Cancel</a>
+    </form>
+</div>
+{% endblock %}

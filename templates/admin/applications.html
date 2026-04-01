@@ -1,6 +1,14 @@
 {% extends "admin/dashboard.html" %}
 
 {% block content %}
+<div class="search-section">
+    <h2>Search Applications</h2>
+    <form action="{{ url_for('admin.viewApplication') }}" method="GET" class="search-form">
+        <input type="text" name="name" placeholder="Search by Student ID" value="{{ name or '' }}">
+        <button type="submit">Search</button>
+    </form>
+</div>
+
 <!-- APPLICATIONS -->
             <h2 id="applications">Student Applications</h2>
             <table border="1" cellpadding="8" cellspacing="0" width="100%">

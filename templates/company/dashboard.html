@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Company Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='company_dashboard.css') }}">
 </head>
 <body>
@@ -17,13 +17,13 @@
     <div class="main-wrapper">
         <aside class="side-nav">
             <ul>
-                <li><a href="{{url_for('company.newDrive')}}">Create Drive</a></li>
-                <li><a href="{{url_for('company.allDrives')}}">Upcoming Drives</a></li>
-                <li><a href="#">Closed Drives</a></li>
+                <li><a href="{{url_for('company.newDrive')}}">🖊️ Create Drive</a></li>
+                <li><a href="{{url_for('company.allDrives')}}">🟢 Upcoming Drives</a></li>
+                <li><a href="#">🔴 Closed Drives</a></li>
             </ul>
             <div class="logout">
                 <ul>
-                    <li><a href=" {{ url_for('auth.logout')}} ">Logout</a></li>
+                    <li><a href=" {{ url_for('auth.logout')}} ">🚪 Logout</a></li>
                 </ul>
             </div>
         </aside>
