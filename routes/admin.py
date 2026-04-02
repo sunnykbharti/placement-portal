@@ -138,7 +138,6 @@ def blacklist_company(company_id):
     company = Company.query.get(company_id)
     if company:
         company.approval = 'Blacklisted'
-        # also cancel all their drives
         Drive.query.filter_by(company_id=company.id).update({'status': 'Cancelled'})
         db.session.commit()
     return redirect(url_for('admin.viewCompany'))
@@ -152,7 +151,7 @@ def blacklist_student(student_id):
     student = Student.query.get(student_id)
     user    = Users.query.filter_by(username=student.student_email).first()
     if student:
-        student.flag = 'Blacklisted'  # we'll use student flag column
+        student.status = 'Blacklisted'
         if user:
             user.flag = 'Inactive'
         db.session.commit()
