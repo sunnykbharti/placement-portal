@@ -36,7 +36,7 @@ def dashboard():
     inact_drives = Drive.query.filter(Drive.status!="Active").count()
 
     tot_applications = Application.query.count()
-    short_applications = Application.query.filter_by(status="Accepted")
+    short_applications = Application.query.filter_by(status="Shortlisted").count()
 
     return render_template('admin/summary.html',
                            tot_company=tot_company,

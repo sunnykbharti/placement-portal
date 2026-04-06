@@ -143,25 +143,40 @@ def archives():
     return render_template("student/archives.html")
 
 #-------------Upload Resume ---------------------
-UPLOAD_FOLDER = 'static/resumes'
+import os
+from werkzeug.utils import secure_filename
+
+# This tells the app to look for a folder named 'resumes' inside 'static'
+UPLOAD_FOLDER = os.path.join('static', 'resumes')
 ALLOWED_EXTENSIONS = {'pdf'}
 
-@student_bp.route('/upload-resume', methods=['POST'])
+@student_bp.route('/upload-resume', methods=['GET', 'POST'])
 @login_required
 @student_required
 def upload_resume():
-    # if 'resume_file' not in request.files:
-    #     return "No file part", 400
-    
-    file = request.files['resume_file']
-    
-    if file and file.filename != '':
-        filename = secure_filename(f"{current_user.username}_resume.pdf")
-        file.save(os.path.join(UPLOAD_FOLDER, filename))
-        student = Student.query.filter_by(student_email=current_user.username).first()
-        student.resume = filename
-        db.session.commit()
+    if request.method == 'POST':
+        # 1. Validation check
+        if 'resume_file' not in request.files:
+            return "No file part", 400
         
-        return redirect(url_for('student.dashboard'))
-    
+        file = request.files['resume_file']
+        
+        if file and file.filename != '':
+            # 2. Secure and save the file
+            filename = secure_filename(f"{current_user.username}_resume.pdf")
+            
+            # Ensure folder exists
+            if not os.path.exists(UPLOAD_FOLDER):
+                os.makedirs(UPLOAD_FOLDER)
+                
+            file.save(os.path.join(UPLOAD_FOLDER, filename))
+            
+            # 3. Update Database
+            student = Student.query.filter_by(student_email=current_user.username).first()
+            student.resume = filename
+            db.session.commit()
+            
+            return redirect(url_for('student.dashboard', message="Resume Uploaded Successfully!"))
+
+    # If GET request, show the upload form
     return render_template('student/upload-resume.html')
