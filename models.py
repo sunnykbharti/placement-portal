@@ -8,14 +8,13 @@ class Users(UserMixin, db.Model) :
     username = db.Column(db.String(100), nullable = False, unique = True)
     password = db.Column(db.String(200), nullable = False)
     role = db.Column(db.String(100), nullable = False)
-    flag = db.Column(db.String(200), default="Inactive")
 
-class Admin(db.Model) :
-    id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String(100), nullable = False)
-    phone = db.Column(db.Integer, nullable = False, unique = True)
-    email = db.Column(db.String(100), nullable = False, unique = True)
-    dob = db.Column(db.Date, nullable = False)
+# class Admin(db.Model) :
+#     id = db.Column(db.Integer, primary_key = True)
+#     name = db.Column(db.String(100), nullable = False)
+#     phone = db.Column(db.Integer, nullable = False, unique = True)
+#     email = db.Column(db.String(100), nullable = False, unique = True)
+#     dob = db.Column(db.Date, nullable = False)
 
 class Company(db.Model) :
     id = db.Column(db.Integer, primary_key = True)

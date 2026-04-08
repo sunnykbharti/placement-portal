@@ -29,13 +29,13 @@ app.register_blueprint(admin_bp)
 app.register_blueprint(student_bp)
 app.register_blueprint(company_bp)
 
-# with app.app_context():
-#     db.create_all()
-#     admin = Users.query.filter_by(username="admin").first()
-#     if not admin:
-#         admin = Users(username="admin1", password="0", role="admin", flag="Active")
-#         db.session.add(admin)
-#         db.session.commit()
+with app.app_context():
+    db.create_all()
+    admin = Users.query.filter_by(username="admin").first()
+    if not admin:
+        admin = Users(username="admin", password="0", role="admin")
+        db.session.add(admin)
+        db.session.commit()
 # with app.app_context():
 #     db.create_all()
     # admin = Users(username="admin1", password="0", role="admin", flag="Active")

@@ -2,9 +2,9 @@
 
 {% block content %}
 <h3> Drive Details </h3>
-<table cellpadding="8" cellspacing="0" width="100%" style="text-align: center;">
+<table cellpadding="8" cellspacing="0" width="100%">
     <tr>
-        <th>Drive ID</th><th>Name</th><th>Title</th><th>Deadline</th><th>Status</th>
+        <th>Drive ID</th><th>Name</th><th>Title</th><th>Deadline</th><th>Drive Status</th>
     </tr>
     <tr>
         <td> {{ drive.id }} </td>
@@ -15,17 +15,17 @@
     </tr>
 </table>
 <h3> Student Applications </h3>
-<table border="1" cellpadding="8" cellspacing="0" width="100%" style="text-align: center;">
+<table border="1" cellpadding="8" cellspacing="0" width="100%" >
     <tr>
-        <th>Application ID</th><th>Student ID</th><th>Name</th><th>Contact</th><th>Status</th><th>Action</th>
+        <th>Application ID</th><th>Student ID</th><th>Name</th><th>Contact</th><th>Student Status</th>
     </tr>
     <tr>
         {% for application in applications %}
             {% for student in students %}
                 <td> {{ application.id }} </td>
                 <td> {{ student.id }} </td>
-                <td> {{ student.name }} </td>
-                <td> {{ student.contact }} </td>
+                <td> {{ student.student_name }} </td>
+                <td> {{ student.student_phone }} </td>
                 <td> {{ student.status }} </td>
             {% endfor %}
         {% endfor %}

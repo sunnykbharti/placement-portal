@@ -1,12 +1,12 @@
 from flask import Blueprint, render_template, redirect, url_for, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 from models import db, Users, Company, Student, Drive, Application
 from sqlalchemy import or_
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
 
 
-# ── Helper: only admin can access ──────────────────────────
+#------------- admin wrapper : ony admin can access -------------------
 def admin_required(f):
     from functools import wraps
     from flask_login import current_user
@@ -18,7 +18,7 @@ def admin_required(f):
     return decorated
 
 
-# ── Dashboard (shows everything) ───────────────────────────
+#------------------ admin dashboard with summary of portal ------------------------
 @admin_bp.route('/dashboard')
 @login_required
 @admin_required
@@ -52,6 +52,7 @@ def dashboard():
                            short_applications=short_applications
                            )
 
+#------------------  Companies Records in System -----------------------
 @admin_bp.route('/company')
 @login_required
 @admin_required
@@ -71,6 +72,8 @@ def viewCompany():
         companies = Company.query.all()
     return render_template('admin/companies.html',companies=companies)
 
+#------------------  Students Records in System -----------------------
+
 @admin_bp.route('/student')
 @login_required
 @admin_required
@@ -89,6 +92,8 @@ def viewStudent():
         students = Student.query.all()
     return render_template('admin/students.html',students=students)
 
+#------------------  Drives Records in Sysytem -----------------------
+
 @admin_bp.route('/drive')
 @login_required
 @admin_required
@@ -106,6 +111,8 @@ def viewDrive():
         drives = Drive.query.all()
     return render_template('admin/drives.html',drives=drives)
 
+#------------------  Applications Records in Sysytem -----------------------
+
 @admin_bp.route('/applications')
 @login_required
 @admin_required
@@ -118,19 +125,21 @@ def viewApplication():
         applications = Application.query.all()
     return render_template('admin/applications.html',applications=applications)
 
-# ── Approve a company ───────────────────────────────────────
+#---------------- Approve a Company --------------
 @admin_bp.route('/company/approve/<int:company_id>')
 @login_required
 @admin_required
 def approve_company(company_id):
     company = Company.query.get(company_id)
+    user = Users.query.filter_by(username=current_user.username).first()
     if company:
         company.approval = 'Active'
+        current_user.flag='Active'
         db.session.commit()
     return redirect(url_for('admin.viewCompany'))
 
 
-# ── Blacklist a company ─────────────────────────────────────
+# --------------- Blacklist a company ------------------------
 @admin_bp.route('/company/blacklist/<int:company_id>')
 @login_required
 @admin_required
@@ -139,6 +148,7 @@ def blacklist_company(company_id):
     if company:
         company.approval = 'Blacklisted'
         Drive.query.filter_by(company_id=company.id).update({'status': 'Cancelled'})
+        Users.query.filter_by(username=current_user.username).update({'flag': 'Inactive'})
         db.session.commit()
     return redirect(url_for('admin.viewCompany'))
 
@@ -184,7 +194,6 @@ def cancel_Drive(drive_id):
 @login_required
 @admin_required
 def view_drive(drive_id):
-    drive = Drive.query.get(drive_id)
     drive = Drive.query.get(drive_id)
     applications = Application.query.filter_by(drive_id=drive_id).all()
     students = []
